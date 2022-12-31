@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    
+{% endblock %}
+
+{% block content %}
+    <h2>Twoje skaładniki</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Nazwa składniu </th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            {% for i in ingredients %}
+                <tr>
+                    <td> {{ i }}</td>
+                    <td> <a href="/delete/ingredient/{{ i }}">Usuń</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

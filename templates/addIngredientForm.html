@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <h2> Tworzenie przepisu </h2>
+{% endblock %}
+
+{% block script %} 
+<script> 
+    function addIngredient() {
+        let name = document.getElementById('name').value;
+
+        fetch("{{ url_for('add_ingredient') }}", {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ 'name' : name })
+        })
+        .then(response => {
+            console.log(response)
+            result = response.json()
+            status_code = response.status;
+            if(status_code != 200) {
+                console.log(`Error ${status_code}!`)
+                return false;
+            }
+            return result
+        })
+        .then(data => {
+            console.log(data)
+            document.getElementById("create").innerHTML = data['result']
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    }  
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="create">
+    <form action="javascript:addIngredient()" method="post">
+        <label for="name">Dodaj nowy składnik do posiadanych:</label><br>
+        <select id="name" name="name">
+            {% for i in ingredients %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select>        
+        <input type="submit" value="Zapisz">
+    </form> 
+</div>
+{% endblock %}

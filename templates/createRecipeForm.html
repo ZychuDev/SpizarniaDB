@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <h2> Tworzenie przepisu </h2>
+{% endblock %}
+
+{% block script %} 
+<script> 
+    function createRecipe() {
+        let name = document.getElementById('name').value;
+        let description = document.getElementById('description').value;
+
+        fetch("{{ url_for('create_recipe') }}", {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ 'name' : name, 'description': description })
+        })
+        .then(response => {
+            console.log(response)
+            result = response.json()
+            status_code = response.status;
+            if(status_code != 200) {
+                console.log(`Error ${status_code}!`)
+                return false;
+            }
+            return result
+        })
+        .then(data => {
+            console.log(data)
+            document.getElementById("create").innerHTML = data['result']
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    }  
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="create">
+    <form action="javascript:createRecipe()" method="post">
+        <label for="name">Podaj nazwe nowego przepisu:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="description">Dodaj opis:</label><br>
+        <textarea id="description" name="description" style="width:250px; height:200px;">Opis przygotowania przepisu. </textarea><br>
+        <input type="submit" value="Zapisz">
+    </form> 
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - FlaskApp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/>
+
+    {% block script %} {% endblock %}
+    
+</head>
+<body>
+    <h3> SpizarniaDB </h3>
+    <nav>
+        <a href="{{ url_for('index') }}">Strona główna</a>
+        <a href="{{ url_for('createRecipeForm') }}">Stwórz przepis</a>
+        <a href="{{ url_for('addIngredientForm') }}">Dodaj nowy składnik</a>  
+        <a href="{{ url_for('get_my_ingredients') }}">Posiadane składniki</a> 
+        <a href="{{ url_for('get_my_recipies') }}">Twoje przepisy </a> 
+        <a href="{{ url_for('get_users') }}">Obserwowani</a>
+        <a href="{{ url_for('analyze')}}">Sprawdź co mogę ugotować ze swoich składników</a>
+        <a href="{{ url_for('rank')}}">Ranking popularności składników</a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

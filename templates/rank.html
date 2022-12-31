@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Ranking popularności składników
+{% endblock %}
+
+{% block content %}
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Nazwa składniku</th>
+                <th>Ilość przepisów, które go zawierają</th>
+            </tr>
+        </thead>
+        {% for i in ingredients %}
+            <tr>
+                <td> {{ i[0] }}</td>
+                <td> {{ i[1] }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

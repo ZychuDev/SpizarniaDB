@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Twoje przepisy
+{% endblock %}
+
+{% block content %}
+<h2>Twoje przepisy</h2>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Nazwa Przepisu </th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        {% for r in recipies %}
+            <tr>
+                <td> {{ r }}</td>
+                <td>
+                    <a href="/update/recipe/{{ r }}">Edytuj</a> <br/>
+                    <a href="/delete/recipe/{{ r }}">Usuń</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

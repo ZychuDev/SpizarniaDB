@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Moi obserwowani
+{% endblock %}
+
+{% block content %}
+    <h2>Moi obserwowani</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Nazwa użytkownika</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            {% for u in users %}
+                <tr>
+                    <td> {{ u }}</td>
+                    <td> 
+                        <a href="/unfollow/{{ u }}">Przestań obserwować</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <h2>Pozostali użytkownicy:</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Nazwa użytkownika</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            {% for u in rest %}
+                <tr>
+                    <td> {{ u }}</td>
+                    <td> 
+                        <a href="/follow/{{ u }}">Obserwuj</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

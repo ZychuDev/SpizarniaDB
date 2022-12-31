@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Dostępne przepisy
+{% endblock %}
+
+{% block content %}
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Nazwa przepisu</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        {% for r in recipies %}
+            <tr>
+                <td> {{ r }}</td>
+                <td> <a href="/get/recipe/{{ r }}">Zobacz</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

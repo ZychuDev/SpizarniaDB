@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Edytowanie {{ recipe }}
+{% endblock %}
+
+{% block content %}
+    <h2>Sposób przygotownia</h2>
+    <p> {{ d }}</p>
+    <h2>Składniki przepisu</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Nazwa składniku</th>
+                </tr>
+            </thead>
+            {% for i in ingredients %}
+                <tr>
+                    <td> {{ i }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <h2>Autor: {{ a }}</h2>
+    </div>
+{% endblock %}
